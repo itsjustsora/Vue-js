@@ -2,12 +2,12 @@
   <div>
       <transition-group name="list" tag="ul">
         <!-- v-for는 데이터에 index 자동으로 부여  -->
-        <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
+        <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
           <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
-            v-on:click="toggleComplete(todoItem, index)"></i>
+            v-on:click="toggleComplete({todoItem, index})"></i>
             <!-- todoItem.completed가 true이면 textCompleted효과가 나타나고 반대일 때는 보이지 않음 -->
           <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-          <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+          <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
             <i class="fas fa-trash-alt"></i>
           </span>
         </li>
@@ -16,15 +16,28 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
-  props: ['propsdata'],
   methods: {
-    removeTodo: function(todoItem, index){
-      this.$emit('removeItem', todoItem, index);
-    },
-    toggleComplete: function(todoItem, index){
-      this.$emit('toggleItem', todoItem, index);
-    }
+    ...mapMutations({
+      removeTodo: 'removeOneItem',
+      toggleComplete: 'toggleOneItem'
+    })
+    // removeTodo: function(todoItem, index){
+    //   //this.$emit('removeItem', todoItem, index);
+    //   this.$store.commit('removeOneItem', {todoItem, index});
+    // },
+    // toggleComplete: function(todoItem, index){
+    //   // this.$emit('toggleItem', todoItem, index);
+    //   this.$store.commit('toggleOneItem', {todoItem, index});
+    //   }
+  },
+  computed: {
+    // todoItems() {
+    //   return this.$store.getters.storedTotoItems;
+    // }
+    ...mapGetters(['storedTodoItems'])
   }
 }
 </script>
