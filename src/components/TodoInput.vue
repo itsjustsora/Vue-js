@@ -25,7 +25,7 @@
 import Modal from './common/Modal.vue';
 
 export default {
-    data: function() {
+    data() {
         return {
             // input에 새롭게 입력되는 값
             newTodoItem: "",
@@ -33,7 +33,7 @@ export default {
         }
     },
     methods: {
-        addTodo: function(){
+        addTodo(){
             if(this.newTodoItem !== ''){
                 //this.$emit('addTodoItem', this.newTodoItem);
                 const text = this.newTodoItem.trim();
@@ -43,12 +43,12 @@ export default {
                 this.showModal = !this.showModal;
             }
         },
-        clearInput: function(){
+        clearInput(){
             this.newTodoItem = '';
         }
     },
     components: {
-        Modal: Modal
+        Modal
     }
 }
 </script>

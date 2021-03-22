@@ -9,12 +9,18 @@ import { mapMutations } from 'vuex'
 
 export default {
   methods: {
+<<<<<<< HEAD
     ...mapMutations({
       clearTodo: 'clearAllItems'
     })
     // clearTodo(){
     //   this.$store.commit('clearAllItems');
     // }
+=======
+    clearTodo(){
+      this.$emit('clearAll');
+    }
+>>>>>>> afa14ececf9d0bec28702ccba486a89aeac0e233
   }
 }
 </script>
