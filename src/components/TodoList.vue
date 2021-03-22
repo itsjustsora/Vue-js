@@ -20,7 +20,6 @@ import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   methods: {
-<<<<<<< HEAD
     ...mapMutations({
       removeTodo: 'removeOneItem',
       toggleComplete: 'toggleOneItem'
@@ -39,14 +38,6 @@ export default {
     //   return this.$store.getters.storedTotoItems;
     // }
     ...mapGetters(['storedTodoItems'])
-=======
-    removeTodo(todoItem, index){
-      this.$emit('removeItem', todoItem, index);
-    },
-    toggleComplete(todoItem, index){
-      this.$emit('toggleItem', todoItem, index);
-    }
->>>>>>> afa14ececf9d0bec28702ccba486a89aeac0e233
   }
 }
 </script>
